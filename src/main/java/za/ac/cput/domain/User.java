@@ -1,7 +1,10 @@
 package za.ac.cput.domain;
+/*User POJO class
 
+Author: Ntombelanga Gqutyana (221646973)
+
+Date: 09 May 2025 */
 public class User{
-
     private  String firstName;
     private String lastName;
     private int identificationNumber;
@@ -12,7 +15,7 @@ public class User{
     private String currentLocation;
     private String notificationPreference;
 
-    private User(){
+    public User(){
 
     }
 
@@ -132,6 +135,20 @@ public class User{
             this.notificationPreference = notificationPreference;
             return this;
         }
+
+        public Builder copy(User user) {
+            this.firstName = user.firstName;
+            this.lastName = user.lastName;
+            this.identificationNumber = user.identificationNumber;
+            this.cellPhone = user.cellPhone;
+            this.email = user.email;
+            this.userId =user.userId;
+            this.password = user.password;
+            this.currentLocation = user.currentLocation;
+            this.notificationPreference = user.notificationPreference;
+        return this;
+            }
+
         public User build(){
             return new User(this);
         }
