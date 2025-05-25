@@ -19,8 +19,8 @@ public class AdminManager extends User {
         this.identificationNumber = builder.identificationNumber;
         this.cellPhone = builder.cellPhone;
         this.email = builder.email;
-        this.userId = builder.userId;
         this. password = builder. password;
+        this.notificationPreference = builder.notificationPreference;
     }
 
     @Override
@@ -32,7 +32,6 @@ public class AdminManager extends User {
                 ", identificationNumber=" + identificationNumber +
                 ", cellPhone=" + cellPhone +
                 ", email='" + email + '\'' +
-                ", userId='" + userId + '\'' +
                 ", password='" + password + '\'' +
                 ", notificationPreference='" + notificationPreference + '\'' +
                 '}';
@@ -78,10 +77,6 @@ public class AdminManager extends User {
                return this;
            }
 
-           public Builder setUserId(String userId) {
-               this.userId = userId;
-               return this;
-           }
 
            public Builder setPassword(String password) {
                this.password = password;
@@ -100,7 +95,6 @@ public class AdminManager extends User {
                this.identificationNumber = user.identificationNumber;
                this.cellPhone = user.cellPhone;
                this.email = user.email;
-               this.userId = user.userId;
                this.password = user.password;
                this.notificationPreference = user.notificationPreference;
                return this;
