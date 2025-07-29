@@ -49,7 +49,7 @@ public class InteriorWash extends Service {
 
     public static class Builder {
         private double engineCleaningIncluded;
-        private int serviceId;
+        private String serviceId;
         private String nameOfService;
         private String descriptionOfService;
         private double price;
@@ -69,7 +69,7 @@ public class InteriorWash extends Service {
 
         }
 
-        public Builder setServiceId(int serviceId) {
+        public Builder setServiceId(String serviceId) {
             this.serviceId = serviceId;
             return this;
         }
@@ -94,11 +94,6 @@ public class InteriorWash extends Service {
             return this;
         }
 
-
-        public Builder setServiceID(int serviceID) {
-            this.serviceId = serviceID;
-            return this;
-        }
 
 
         public Builder setEngineCleaningIncluded(double engineCleaningIncluded) {

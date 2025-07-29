@@ -5,7 +5,7 @@ import za.ac.cput.domain.InteriorWash;
 import za.ac.cput.util.Helper;
 
 public class InteriorWashFactory {
-    public static InteriorWash createInteriorWash(int serviceID, String nameOfService , String
+    public static InteriorWash createInteriorWash(String serviceID, String nameOfService , String
                                                   descriptionOfService , double Price, double duration
                                               ,String airFreshener , double vacuumingPrice){
 
@@ -17,7 +17,7 @@ public class InteriorWashFactory {
 
 
         return new InteriorWash.Builder().setDescriptionOfService(descriptionOfService)
-                .setDuration(duration).setPrice(Price).setServiceID(serviceID).setNameOfService(nameOfService).setAirFreshenerTyp(airFreshener)
+                .setDuration(duration).setPrice(Price).setServiceId(serviceID).setNameOfService(nameOfService).setAirFreshenerTyp(airFreshener)
                 .setVacuumingPrice(vacuumingPrice)
                 .build();
     }

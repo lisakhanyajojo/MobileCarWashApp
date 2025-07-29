@@ -3,7 +3,7 @@ package za.ac.cput.domain;
 
 public abstract class  Service {
 
-    protected int serviceId;
+    protected String serviceId;
     protected String nameOfService;
     protected String descriptionOfService;
     protected double price;
@@ -26,7 +26,7 @@ public abstract class  Service {
         return price;
     }
 
-    public int getServiceId() {
+    public String getServiceId() {
         return serviceId;
     }
 
