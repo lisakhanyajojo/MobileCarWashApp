@@ -62,6 +62,7 @@ public class FullWashRepository implements IFullWashRepository{
         if(fullWashToDelete == null){
             return false;
         }
+
         return (fullWashList.remove(fullWashToDelete));
 
     }
