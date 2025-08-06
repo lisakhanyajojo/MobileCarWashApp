@@ -86,7 +86,7 @@ public class FullWash extends Service {
 
 
 
-        Builder copy(FullWash fullWash){
+       public Builder copy(FullWash fullWash){
             this.addedExtraTimeToWash = fullWash.addedExtraTimeToWash;
             this.isUnderBodyWashIncluded = fullWash.isUnderBodyWashIncluded;
             this.serviceId = fullWash.getServiceId();

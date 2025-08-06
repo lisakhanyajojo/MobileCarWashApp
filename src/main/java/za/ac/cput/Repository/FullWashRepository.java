@@ -36,7 +36,6 @@ public class FullWashRepository implements IFullWashRepository{
         for(FullWash r : fullWashList){
             if(r.getServiceId().equals(serviceId))
                 return r;
-
         }
         return null;
     }

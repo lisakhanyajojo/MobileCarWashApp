@@ -104,7 +104,7 @@ public class InteriorWash extends Service {
 
 
 
-        Builder copy(InteriorWash interiorWash){
+      public Builder copy(InteriorWash interiorWash){
             this.engineCleaningIncluded = interiorWash.engineCleaningIncludedPrice;
             this.serviceId = interiorWash.getServiceId();
             this.descriptionOfService = interiorWash.getDescriptionOfService();

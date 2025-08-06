@@ -5,7 +5,7 @@ import za.ac.cput.util.Helper;
 
 public class FullWashFactory {
 
-   public static FullWash createFullWash(int serviceID, String nameOfService , String
+   public static FullWash createFullWash(   String serviceID, String nameOfService , String
                                          descriptionOfService , double Price, double duration,
                                          int extraTimeToWash , boolean underBodyWashIncluded){
 
