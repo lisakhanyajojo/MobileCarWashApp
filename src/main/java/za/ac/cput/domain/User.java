@@ -5,17 +5,16 @@ Author: Ntombelanga Gqutyana (221646973)
 
 Date: 09 May 2025 */
 public class User{
-    private  String firstName;
-    private String lastName;
-    private int identificationNumber;
-    private  long cellPhone;
-    private String email;
-    private String userId;
-    private String password;
-    private String currentLocation;
-    private String notificationPreference;
+    protected  String firstName;
+    protected  String lastName;
+    protected  long identificationNumber;
+    protected   long cellPhone;
+    protected  String email;
+    protected  String userId;
+    protected  String password;
+    protected  String notificationPreference;
 
-    public User(){
+    protected User(){
 
     }
 
@@ -27,7 +26,7 @@ public class User{
         return lastName;
     }
 
-    public int getIdentificationNumber() {
+    public long getIdentificationNumber() {
         return identificationNumber;
     }
 
@@ -47,9 +46,6 @@ public class User{
         return password;
     }
 
-    public String getCurrentLocation() {
-        return currentLocation;
-    }
 
     public String getNotificationPreference() {
         return notificationPreference;
@@ -62,7 +58,6 @@ public class User{
         this.email = builder.email;
         this.userId = builder.userId;
         this.password = builder.password;
-        this.currentLocation = builder.currentLocation;
         this.notificationPreference = builder.notificationPreference;
     }
 
@@ -76,19 +71,17 @@ public class User{
                 ", email='" + email + '\'' +
                 ", userId='" + userId + '\'' +
                 ", password='" + password + '\'' +
-                ", currentLocation='" + currentLocation + '\'' +
                 ", notificationPreference='" + notificationPreference + '\'' +
                 '}';
     }
     public static class Builder{
         private  String firstName;
         private String lastName;
-        private int identificationNumber;
+        private long identificationNumber;
         private  long cellPhone;
         private String email;
         private String userId;
         private String password;
-        private String currentLocation;
         private String notificationPreference;
 
         public Builder setFirstName(String firstName) {
@@ -101,7 +94,7 @@ public class User{
             return this;
         }
 
-        public Builder setIdentificationNumber(int identificationNumber) {
+        public Builder setIdentificationNumber(long identificationNumber) {
             this.identificationNumber = identificationNumber;
             return this;
         }
@@ -126,10 +119,6 @@ public class User{
             return this;
         }
 
-        public  Builder setCurrentLocation(String currentLocation) {
-            this.currentLocation = currentLocation;
-            return this;
-        }
 
         public Builder  setNotificationPreference(String notificationPreference) {
             this.notificationPreference = notificationPreference;
@@ -144,7 +133,6 @@ public class User{
             this.email = user.email;
             this.userId =user.userId;
             this.password = user.password;
-            this.currentLocation = user.currentLocation;
             this.notificationPreference = user.notificationPreference;
         return this;
             }
