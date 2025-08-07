@@ -3,8 +3,7 @@ package za.ac.cput.domain;
 /*Booking POJO class
 
 Author: AG Gwangqa (222843608)
-Author: AG Gwangqa (222843608)
-Author: AG Gwangqa (222843608)
+
 
 Date: 09 May 2025 */
 
