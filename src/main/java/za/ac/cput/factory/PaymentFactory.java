@@ -2,18 +2,19 @@ package za.ac.cput.factory;
 
 
 import za.ac.cput.domain.Payment;
+import za.ac.cput.util.Helper;
 
 import java.time.LocalDateTime;
 
 public class PaymentFactory {
 
     public static Payment createPayment(int paymentId, String bookingId, double price, LocalDateTime paymentDate, String bankName, Long bankAccountNumber, int paymentMethod) {
-        if (paymentId <= 0 || bookingId == null || bookingId.isEmpty() || price <= 0 || paymentDate == null
-                || bankName == null || bankName.isEmpty() || bankAccountNumber <= 0 || paymentMethod < 1) {
+
+        if (Helper.isNullOrEmpty(bookingId) || !Helper.isPriceDurationValid(price) || paymentDate == null || Helper.isNullOrEmpty(bankName) || bankAccountNumber == null || paymentMethod <= 0) {
             return null;
 
-
         }
+
         return new Payment.Builder()
                 .setPaymentId(paymentId)
                 .setBookingId(bookingId)
@@ -24,4 +25,8 @@ public class PaymentFactory {
                 .setPaymentMethod(paymentMethod)
                 .build();
     }
-}
+
+
+        }
+
+

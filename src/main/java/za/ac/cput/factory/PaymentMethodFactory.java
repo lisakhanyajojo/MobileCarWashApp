@@ -1,10 +1,11 @@
 package za.ac.cput.factory;
 
 import za.ac.cput.domain.PaymentMethod;
+import za.ac.cput.util.Helper;
 
 public class PaymentMethodFactory {
     public static PaymentMethod createPayment(int paymentMethodId, String paymentMethodType) {
-        if (paymentMethodType == null || paymentMethodType.isEmpty())
+        if(Helper.isNullOrEmpty(paymentMethodType))
             return null;
 
         return new PaymentMethod.Builder()
