@@ -21,6 +21,7 @@ public class Customer extends User{
     private Address address;
 
     public Customer() {
+        //
 
     }
 
