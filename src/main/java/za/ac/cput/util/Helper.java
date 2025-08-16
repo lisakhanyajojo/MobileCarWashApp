@@ -26,4 +26,12 @@ public class Helper {
         String phone = String.valueOf(cellPhone);
         return phone.matches("^(27|0)[0-9]{8,9}$");
     }
+
+    public static boolean isPriceDurationValid(double price){
+        if(price <= 0){
+            return false;
+        }
+        return  true;
+    }
+
 }
