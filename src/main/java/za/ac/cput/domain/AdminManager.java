@@ -1,6 +1,13 @@
 package za.ac.cput.domain;
 
-public class AdminManager extends User {
+import jakarta.persistence.*;
+
+import java.io.Serializable;
+@Entity
+
+@DiscriminatorValue("ADMIN_MANAGER")
+public class AdminManager extends User implements Serializable {
+
 
     private String adminManagerId;
 
@@ -88,15 +95,16 @@ public class AdminManager extends User {
                return this;
            }
 
-           public AdminManager.Builder copy(User user) {
-               this.adminManagerId = adminManagerId;
-               this.firstName = user.firstName;
-               this.lastName = user.lastName;
-               this.identificationNumber = user.identificationNumber;
-               this.cellPhone = user.cellPhone;
-               this.email = user.email;
-               this.password = user.password;
-               this.notificationPreference = user.notificationPreference;
+           public AdminManager.Builder copy(AdminManager adminManager) {
+               this.adminManagerId = adminManager.getAdminManagerId();
+               this.userId = adminManager.getUserId();
+               this.firstName = adminManager.getFirstName();
+               this.lastName = adminManager.getLastName();
+               this.identificationNumber = adminManager.getIdentificationNumber();
+               this.cellPhone = adminManager.getCellPhone();
+               this.email = adminManager.getEmail();
+               this.password = adminManager.getPassword();
+               this.notificationPreference = adminManager.getNotificationPreference();
                return this;
            }
 

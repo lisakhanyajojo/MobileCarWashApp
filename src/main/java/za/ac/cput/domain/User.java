@@ -1,21 +1,48 @@
 package za.ac.cput.domain;
+
+import jakarta.persistence.*;
+
+import java.util.UUID;
+
+
 /*User POJO class
 
 Author: Ntombelanga Gqutyana (221646973)
 
 Date: 09 May 2025 */
+@Entity
+@Table(name = "users")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "user_type", discriminatorType = DiscriminatorType.STRING)
 public class User{
+
+    @Id
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id", nullable = false)
+    protected String userId;
+    @Column(nullable = false)
     protected  String firstName;
+    @Column(nullable = false)
     protected  String lastName;
+    @Column(name = "id_number", nullable = false)
     protected  long identificationNumber;
+    @Column(name = "cell_phone", nullable = false)
     protected   long cellPhone;
+
     protected  String email;
-    protected  String userId;
+    @Column(nullable = false)
     protected  String password;
+    @Column(name = "notification_preference")
     protected  String notificationPreference;
 
     protected User(){
 
+    }
+    @PrePersist
+    public void generateId() {
+        if (this.userId == null) {
+            this.userId = UUID.randomUUID().toString();
+        }
     }
 
     public String getFirstName() {
@@ -46,10 +73,10 @@ public class User{
         return password;
     }
 
-
     public String getNotificationPreference() {
         return notificationPreference;
     }
+
     public User(Builder builder){
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
@@ -83,6 +110,9 @@ public class User{
         private String userId;
         private String password;
         private String notificationPreference;
+
+
+
 
         public Builder setFirstName(String firstName) {
             this.firstName = firstName;
@@ -126,14 +156,14 @@ public class User{
         }
 
         public Builder copy(User user) {
-            this.firstName = user.firstName;
-            this.lastName = user.lastName;
-            this.identificationNumber = user.identificationNumber;
-            this.cellPhone = user.cellPhone;
-            this.email = user.email;
+            this.firstName = user.getFirstName();
+            this.lastName = user.getLastName();
+            this.identificationNumber = user.getIdentificationNumber();
+            this.cellPhone = user.getCellPhone();
+            this.email = user.getEmail();
             this.userId =user.userId;
-            this.password = user.password;
-            this.notificationPreference = user.notificationPreference;
+            this.password = user.getPassword();
+            this.notificationPreference = user.getNotificationPreference();
         return this;
             }
 
