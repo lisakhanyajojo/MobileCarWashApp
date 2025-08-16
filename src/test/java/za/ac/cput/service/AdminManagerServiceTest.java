@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
     @Autowired
     private AdminManagerService service;
-    private static AdminManager admin = AdminManagerFactory.createAdminManager("Nathi55", "Lizo", " Mankayi", 8898642687537L, 27986435677L, "lizo@gmail.com", "signature888", "email");
+    private static AdminManager admin = AdminManagerFactory.createAdminManager("Anathi55", "Lizo", " Mankayi", 8898642687537L, 27986435677L, "lizo@gmail.com", "signature888", "email");
 
 
 
