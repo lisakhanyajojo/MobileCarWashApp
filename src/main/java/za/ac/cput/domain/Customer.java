@@ -13,23 +13,19 @@ public class Customer extends User{
     private boolean freeWashActivated;
     private boolean freeBirthdayWash;
     private String bankName;
-    private long bankAccountNumber;;
-    private String ratingId;
+    private long bankAccountNumber;
+    private Long ratingId;
 
     @ManyToOne
     @JoinColumn(name = "address_street_number")
     private Address address;
 
     public Customer() {
-        //
 
     }
 
-
-
-
     private Customer(Builder builder){
-        this.ratingId = String.valueOf(builder.ratingId);
+        this.ratingId = builder.ratingId;
         this.address = builder.address;
         this.carModel = builder.carModel;
         this.carWashCount = builder.carWashCount;
@@ -44,6 +40,7 @@ public class Customer extends User{
         this.notificationPreference = builder.notificationPreference;
         this.lastName = builder.lastName;
         this.firstName = builder.firstName;
+        this.identificationNumber = builder.identificationNumber;
 
 
     }
@@ -64,7 +61,7 @@ public class Customer extends User{
         return freeWashActivated;
     }
 
-    public boolean isFreewBirthdayWash() {
+    public boolean isFreeBirthdayWash() {
         return freeBirthdayWash;
     }
 
@@ -76,7 +73,7 @@ public class Customer extends User{
         return bankAccountNumber;
     }
 
-    public String getRatingId() {
+    public Long getRatingId() {
         return ratingId;
     }
 
@@ -206,7 +203,7 @@ public class Customer extends User{
         }
 
         public Builder copy(Customer customer){
-            this.ratingId = Long.valueOf(customer.ratingId);
+            this.ratingId = customer.ratingId;
             this.cellPhone = customer.cellPhone;
             this.email = customer.email;
             this.identificationNumber = customer.identificationNumber;
