@@ -25,7 +25,7 @@ public class CustomerFactory {
 
         
         return new Customer.Builder()
-                .setRatingId(Long.valueOf(System.currentTimeMillis())) // dummy ratingId
+                .setRatingId(Long.valueOf(System.currentTimeMillis()))
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setCarModel(carModel)
