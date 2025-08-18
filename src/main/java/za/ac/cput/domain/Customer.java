@@ -1,8 +1,13 @@
 package za.ac.cput.domain;
 
-public class Customer extends User{
+import jakarta.persistence.*;
 
-    private String customerId;
+@Entity
+public class Customer extends User{
+@Id
+@GeneratedValue(strategy = GenerationType.AUTO)
+
+    private Long customerId;
     private String carModel;
     private int carWashCount;
     private boolean freeWashActivated;
@@ -10,14 +15,21 @@ public class Customer extends User{
     private String bankName;
     private long bankAccountNumber;;
     private String ratingId;
+
+    @ManyToOne
+    @JoinColumn(name = "address_street_number")
     private Address address;
 
-    private Customer(){
+    public Customer() {
+        //
 
     }
 
+
+
+
     private Customer(Builder builder){
-        this.ratingId = builder.ratingId;
+        this.ratingId = String.valueOf(builder.ratingId);
         this.address = builder.address;
         this.carModel = builder.carModel;
         this.carWashCount = builder.carWashCount;
@@ -40,7 +52,7 @@ public class Customer extends User{
         return carModel;
     }
 
-    public String getCustomerId() {
+    public Long getCustomerId() {
         return customerId;
     }
 
@@ -95,7 +107,7 @@ public class Customer extends User{
     }
 
     public static class Builder{
-        private String ratingId;
+        private Long ratingId;
         private String firstName;
         private String lastName;
         private int carWashCount;
@@ -108,11 +120,11 @@ public class Customer extends User{
         private String email;
         private String notificationPreference;
         private String password;
-        private String customerId;
+        private Long customerId;
         private String carModel;
         private Address address;
 
-        public Builder setRatingId(String ratingId) {
+        public Builder setRatingId(Long ratingId) {
             this.ratingId = ratingId;
             return this;
         }
@@ -178,7 +190,7 @@ public class Customer extends User{
             return this;
         }
 
-        public Builder setCustomerId(String customerId) {
+        public Builder setCustomerId(Long customerId) {
             this.customerId = customerId;
             return this;
         }
@@ -194,7 +206,7 @@ public class Customer extends User{
         }
 
         public Builder copy(Customer customer){
-            this.ratingId = customer.ratingId;
+            this.ratingId = Long.valueOf(customer.ratingId);
             this.cellPhone = customer.cellPhone;
             this.email = customer.email;
             this.identificationNumber = customer.identificationNumber;
