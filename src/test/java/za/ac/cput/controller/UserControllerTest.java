@@ -1,90 +1,103 @@
 package za.ac.cput.controller;
 
-
-import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import za.ac.cput.domain.AdminManager;
 import za.ac.cput.domain.User;
 import za.ac.cput.factory.UserFactory;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@TestMethodOrder(MethodOrderer.MethodName.class)
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UserControllerTest {
 
-    private static User user;
     @Autowired
     private TestRestTemplate restTemplate;
-    private static final String BASE_URL = "http://localhost:3306/mobilecarwashapp/user";
+
+    private static final String BASE_URL = "/MobileCarWashApp/userService";
+    private static User user;
 
     @BeforeAll
-    public static void setup(){
-        user = UserFactory.createUser("Nick", "Jemies", 9965836293745L, 2796673838L, "nick@gmail.com", "u8ujjgg", "email");
+    static void setup() {
+        user = UserFactory.createUser(
+                "Ayanda8764",
+                "Nick",
+                "Jemies",
+                9965836293745L,
+                2796673838L,
+                "nick@gmail.com",
+                "u8ujjgg",
+                "email"
+        );
     }
+
     @Test
-    public void a_create(){
-        String url = BASE_URL + "/create";
-        ResponseEntity<User> postResponse = this.restTemplate.postForEntity(url , user,User.class);
+    @Order(1)
+    void a_create() {
+        String url =  BASE_URL + "/create";
+        ResponseEntity<User> postResponse = this.restTemplate.postForEntity(url, user, User.class);
         assertNotNull(postResponse);
-        assertNotNull(postResponse.getBody());
         User userSaved = postResponse.getBody();
-        assertEquals(user.getFirstName(), userSaved.getFirstName());
-        System.out.println("Created: " + userSaved);
+        assertEquals(HttpStatus.OK, postResponse.getStatusCode());
+        assertEquals(200, postResponse.getStatusCodeValue());
+        assertNotNull(userSaved);
+        assertEquals(user.getUserId(), userSaved.getUserId());
+        System.out.println(" created" + userSaved);
     }
-    @Test
-    public void read(){
-        String url = BASE_URL + "/read" + user.getLastName();
-        ResponseEntity<User> response = this.restTemplate.getForEntity(url ,User.class);
-        assertEquals(user.getLastName(),response.getBody().getLastName());
-        System.out.println("Read: " + response.getBody());
-    }
-    @Test
-    public void update(){
 
-        User updatedUser = new User.Builder().copy(user).setFirstName("Neo").build();
-        String url = BASE_URL + "/update";
-        ResponseEntity<User> response = this.restTemplate.postForEntity(url ,updatedUser,User.class);
+    @Test
+    @Order(2)
+    void b_read() {
+        ResponseEntity<User> response = restTemplate.getForEntity(BASE_URL + "/read/" + user.getUserId(), User.class);
+        assertEquals(200, response.getStatusCodeValue());
         assertNotNull(response.getBody());
-        assertEquals(updatedUser.getEmail(),response.getBody().getEmail());
-        System.out.println("Updated: " + response.getBody());
-
-
-    }
-    @Test
-    public void delete(){
-        String url = BASE_URL + "/delete" + user.getEmail();
-        this.restTemplate.delete(url);
-
-        ResponseEntity<User> response =  this.restTemplate.getForEntity(BASE_URL + "/read" + user.getEmail(), User.class);
-        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-        System.out.println("Deleted: " + "true");
+        assertEquals(user.getUserId(), response.getBody().getUserId());
+        System.out.println("read: " + response.getBody());
     }
 
     @Test
-    public void getall() {
+    @Order(3)
+    void c_update() {
+        User updated = new User.Builder().copy(user).setFirstName("Alungile").build();
         String url = BASE_URL + "/update";
-        ResponseEntity<User[]> response = this.restTemplate.getForEntity(url, User[].class);
+        this.restTemplate.put(url,updated);
+
+        ResponseEntity<User> response = restTemplate.getForEntity(BASE_URL + "/read/" + updated.getUserId(),User.class);
         assertNotNull(response.getBody());
-        System.out.println("get all: ");
-        for (User user : response.getBody()) {
+        assertEquals(response.getStatusCode(),HttpStatus.OK);
+        assertEquals(200, response.getStatusCodeValue());
+
+        assertEquals(updated.getFirstName() ,    response.getBody().getFirstName());
+        System.out.println("updated: " + response.getBody());
+    }
+
+
+    @Test
+    @Order(4)
+    void e_delete() {
+        String url = BASE_URL + "/delete/" + user.getUserId();
+        restTemplate.delete(url);
+        ResponseEntity<User> response = restTemplate.getForEntity(BASE_URL + "/read/" + user.getUserId(), User.class);
+        assertNull(response.getBody());
+        System.out.println("Deleted:" + true);
+
+    }
+
+    @Test
+    @Order(5)
+    void d_findAll() {
+        String url = BASE_URL + "/findAll";
+        ResponseEntity<User[]> response = this.restTemplate.getForEntity(url , User[].class);
+        assertNotNull(response.getBody());
+        assertEquals(200, response.getStatusCodeValue());
+        System.out.println("Get all: ");
+        for(User user : response.getBody()){
             System.out.println(user);
         }
 
-
     }
 }
-
-
-
-

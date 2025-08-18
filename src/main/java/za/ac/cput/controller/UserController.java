@@ -11,36 +11,38 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/userService")
+@RequestMapping("/MobileCarWashApp/userService")
 public class UserController {
 
+    private final UserService service;
 
-        private UserService service;
+    @Autowired
+    public UserController(UserService service) {
+        this.service = service;
+    }
 
-        @Autowired
-        public UserController(UserService service) {
-            this.service = service;
-        }
-        @PostMapping("/create/")
-        public User create(@RequestBody User user){
-            return service.create(user);
-        }
-        @GetMapping("/read/{userId}")
-        public User read(@PathVariable String userId){
-            return service.read(userId);
-        }
-        @PutMapping("/read/")
-        public User update(@RequestBody User user){
-            return service.update(user);
-        }
-        @DeleteMapping("/delete/{userId}")
-        public boolean delete(@PathVariable String userId){
-            return service.delete(userId);
-        }
-        //@GetMapping("/getall/")
-       // public List<User> getall(){
-            //return service.getall();
-        }
-   // }
+    @PostMapping("/create")
+    public User create(@RequestBody User user) {
+        return service.create(user);
+    }
 
+    @GetMapping("/read/{userId}")
+    public User read(@PathVariable String userId) {
+        return service.read(userId);
+    }
 
+    @PutMapping("/update")
+    public User update(@RequestBody User user) {
+        return service.update(user);
+    }
+
+    @DeleteMapping("/delete/{userId}")
+    public boolean delete(@PathVariable String userId) {
+        return service.delete(userId);
+    }
+
+    @GetMapping("/findAll")
+    public List<User> findAll() {
+        return service.findAll();
+    }
+}
