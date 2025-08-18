@@ -26,6 +26,7 @@ public class CustomerRepository implements ICustomerRepository {
         if (success) {
             return t;
         }
+
         return null;
     }
 
