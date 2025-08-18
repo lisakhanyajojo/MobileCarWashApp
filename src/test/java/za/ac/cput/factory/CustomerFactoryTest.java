@@ -43,7 +43,7 @@ class CustomerFactoryTest {
     void testCreateCustomerInvalidEmail() {
         Address address = new Address("123", "Dorset Street", "Cape Town", "Western Cape", "8000");
         Customer customer = CustomerFactory.createCustomer(
-                null, "Doe", "Corolla Toyota", 3, false, true,
+                "Anele", "Jaji", "Corolla Toyota", 3, false, true,
                 "Capitec", 123456789, 0304145470, +273868601,"anelejaji03", "SMS",
                 "Ace9924", address);
         assertNull(customer);
