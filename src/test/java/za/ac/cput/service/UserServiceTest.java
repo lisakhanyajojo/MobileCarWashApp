@@ -23,7 +23,7 @@ public class UserServiceTest {
    @Autowired
     private UserService userService;
 
-    private static User user = UserFactory.createUser("Nick", "Jomo", 9965836293745L, 2796673838L, "nick@gmail.com", "u8ujjgg", "email");
+    private static User user = UserFactory.createUser("And343","Nick", "Jomo", 9965836293745L, 2796673838L, "nick@gmail.com", "u8ujjgg", "email");
 
     @Test
     public void a_create() {

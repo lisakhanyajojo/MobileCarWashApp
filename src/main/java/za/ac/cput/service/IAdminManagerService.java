@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface IAdminManagerService extends IService<AdminManager,String>{
 
-    List<AdminManager> findByAdminManagerId(String adminManagerId);
+   // List<AdminManager> findByAdminManagerId(String adminManagerId);
 
 }

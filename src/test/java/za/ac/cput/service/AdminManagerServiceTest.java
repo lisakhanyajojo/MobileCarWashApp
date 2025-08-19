@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
     @Autowired
     private AdminManagerService service;
-    private static AdminManager admin = AdminManagerFactory.createAdminManager("Anathi55", "Lizo", " Mankayi", 8898642687537L, 27986435677L, "lizo@gmail.com", "signature888", "email");
+    private static AdminManager admin = AdminManagerFactory.createAdminManager("Anathi77","Anath",  8898642687537L, 27986435677L, "liss a@gmail.com", "signature888", "email");
 
 
 
@@ -31,15 +31,15 @@ import static org.junit.jupiter.api.Assertions.*;
         AdminManager created = service.create(admin);
         assertNotNull(created);
         admin = created;
-        assertNotNull(admin.getAdminManagerId());
+        assertNotNull(admin.getUserId());
         System.out.println("Created: " + created);
     }
 
     @Test
     @Order(2)
     public void b_read() {
-        System.out.println("Reading Admin with ID: " + admin.getAdminManagerId());
-        AdminManager read = service.read(admin.getAdminManagerId());
+        System.out.println("Reading Admin with ID: " + admin.getUserId());
+        AdminManager read = service.read(admin.getUserId());
         assertNotNull(admin);
         System.out.println("Read: " + read);
     }
@@ -50,12 +50,12 @@ import static org.junit.jupiter.api.Assertions.*;
         assertNotNull(admin);
         AdminManager updatedAdmin = new AdminManager.Builder()
                 .copy(admin)
-                .setLastName("Nao")
+                .setLastName("Nana")
                 .build();
 
         AdminManager updated = service.update(updatedAdmin);
         assertNotNull(updated);
-        assertEquals("Nao", updated.getLastName());
+        assertEquals("Nana", updated.getLastName());
         admin = updated;
         System.out.println("Updated: " + updated);
     }

@@ -19,28 +19,28 @@ import java.util.List;
     }
 
     @Override
-    public AdminManager create(AdminManager adminManager) {
-        return this.repository.save(adminManager);
+    public AdminManager create(AdminManager admin) {
+        return repository.save(admin);
     }
 
     @Override
-    public AdminManager save(AdminManager adminManager) {
-        return this.repository.save(adminManager);
+    public AdminManager save(AdminManager admin) {
+        return repository.save(admin);
     }
 
     @Override
-    public AdminManager read(String id) {
-        return this.repository.findById(id).orElse(null);
+    public AdminManager read(String userId) {
+        return repository.findById(userId).orElse(null);
     }
 
     @Override
-    public AdminManager update(AdminManager adminManager) {
-        return this.repository.save(adminManager);
+    public AdminManager update(AdminManager admin) {
+        return repository.save(admin);
     }
 
     @Override
-    public boolean delete(String id) {
-        this.repository.deleteById(id);
+    public boolean delete(String userId) {
+        this.repository.deleteById(userId);
         return true;
     }
 
@@ -50,10 +50,8 @@ import java.util.List;
     }
 
 
-    @Override
-    public List<AdminManager> findByAdminManagerId(String adminManagerId) {
-        return List.of();
+
     }
-}
+
 
 

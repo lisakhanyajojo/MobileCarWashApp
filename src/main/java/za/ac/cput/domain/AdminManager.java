@@ -3,23 +3,28 @@ package za.ac.cput.domain;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.UUID;
+
 @Entity
 
 @DiscriminatorValue("ADMIN_MANAGER")
 public class AdminManager extends User implements Serializable {
 
 
-    private String adminManagerId;
+    @Column(name = "admin_manager_id", unique = true, updatable = false)
+  private String adminManagerId;
+
 
     protected AdminManager(){
         super();
     }
 
-    public String getAdminManagerId() {
+   public String getAdminManagerId() {
         return adminManagerId;
-    }
+   }
 
     public AdminManager (Builder builder){
+        this.userId = builder.userId;
         this.adminManagerId = builder.adminManagerId;
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
@@ -56,9 +61,12 @@ public class AdminManager extends User implements Serializable {
 
            public Builder setAdminManagerId(String adminManagerId) {
                this.adminManagerId = adminManagerId;
+              return this;
+          }
+           public Builder setUserId(String userId) {
+               this.userId = userId;
                return this;
            }
-
            public Builder setFirstName(String firstName) {
                this.firstName = firstName;
                return this;
@@ -109,6 +117,10 @@ public class AdminManager extends User implements Serializable {
            }
 
            public AdminManager build() {
+               if (this.userId == null) {
+                   this.userId = UUID.randomUUID().toString();
+               }
+
                return new AdminManager(this);
            }
        }

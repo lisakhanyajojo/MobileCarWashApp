@@ -9,13 +9,13 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 public class UserFactoryTest {
 
     private static User user1 = UserFactory.createUser(
-            "Alungile", null, 9698756888888L, 27876543218L, "ron@gmail.com", "uytre33", "sms");
+            "Msay432","Alungile", null, 9698756888888L, 27876543218L, "ron@gmail.com", "uytre33", "sms");
 
     private static User user2 = UserFactory.createUser(
-            "Nick", "Jemies", 9965836293745L, 2796673838L, "nick@gmail.com", "u8ujjgg", "email");
+            "Ayakha55","Nick", "Jemies", 9965836293745L, 2796673838L, "nick@gmail.com", "u8ujjgg", "email");
 
     private static User user3 = UserFactory.createUser(
-            "James", "Hall", 9765329187327L, 27696754321L, "jamesgmail.com", "uy777", "sms");
+            "Nono67","James", "Hall", 9765329187327L, 27696754321L, "jamesgmail.com", "uy777", "sms");
 
     @Test
     void testCreateUserFailure_NullFields() {

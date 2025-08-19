@@ -1,17 +1,19 @@
 package za.ac.cput.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import za.ac.cput.domain.AdminManager;
 import za.ac.cput.service.AdminManagerService;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
-@RequestMapping("/MobileCarWashApp/adminManager")
+@RequestMapping("MobileCarWashApp/adminManagerService")
 public class AdminManagerController {
 
-    private  AdminManagerService service;
+    private final AdminManagerService service;
 
     @Autowired
     public AdminManagerController(AdminManagerService service) {
@@ -19,27 +21,28 @@ public class AdminManagerController {
     }
 
     @PostMapping("/create")
-    public AdminManager create(@RequestBody AdminManager adminManager) {
-        return service.create(adminManager);
+    public ResponseEntity<AdminManager> create(@RequestBody AdminManager admin) {
+        AdminManager saved = service.save(admin);
+        return ResponseEntity.ok(saved);
     }
 
     @GetMapping("/read/{adminManagerId}")
-    public AdminManager read(@PathVariable String adminManagerId) {
-       return service.read(adminManagerId);
+    public AdminManager read(@PathVariable String userId) {
+        return service.read(userId);
     }
 
     @PutMapping("/update")
-    public AdminManager update(@RequestBody AdminManager adminManager) {
-        return service.update(adminManager);
+    public AdminManager update(@RequestBody AdminManager admin) {
+        return service.update(admin);
     }
 
     @DeleteMapping("/delete/{adminManagerId}")
-    public boolean delete(@PathVariable String adminManagerId) {
-      return service.delete(adminManagerId);
+    public boolean delete(@PathVariable String userId) {
+        return service.delete(userId);
     }
 
-    @GetMapping("/getall")
+    @GetMapping("/findAll")
     public List<AdminManager> findAll() {
-       return service.findAll();
+        return service.findAll();
     }
 }

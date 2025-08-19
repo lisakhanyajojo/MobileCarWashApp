@@ -3,13 +3,20 @@ package za.ac.cput.domain;
 import jakarta.persistence.*;
 import java.util.UUID;
 
+
+
 @Entity
 @Table(name = "user")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "user_type", discriminatorType = DiscriminatorType.STRING)
 public class User {
 
+
+
     @Id
+   // @GeneratedValue(strategy = GenerationType.UUID)  // ✅ Auto-generate UUID
+   // @Column(nullable = false, updatable = false)
+
     @Column(name = "user_id", nullable = false, updatable = false)
     protected String userId;
 
