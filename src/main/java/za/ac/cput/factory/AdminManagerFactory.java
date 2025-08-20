@@ -5,7 +5,7 @@ import za.ac.cput.util.Helper;
 
 public class AdminManagerFactory {
 
-    public static AdminManager createAdminManager( String firstName,String lastName,long identificationNumber,long cellPhone,String email,String password,String notificationPreference){
+    public static AdminManager createAdminManager( String adminManagerId,String firstName,String lastName,long identificationNumber,long cellPhone,String email,String password,String notificationPreference){
         if ( Helper.isNullOrEmpty(firstName) || Helper.isNullOrEmpty(lastName) || !Helper.isValidIdentificationNumber(identificationNumber)  ||  Helper.isNullOrEmpty(password) || Helper.isNullOrEmpty(notificationPreference)){
          return null;
         }
@@ -17,7 +17,7 @@ public class AdminManagerFactory {
             System.out.println("invalid cellphone number");
             return null;
         }
-        return new AdminManager.Builder()
+        return new AdminManager.Builder().setAdminManagerId(adminManagerId)
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setIdentificationNumber(identificationNumber)

@@ -29,8 +29,8 @@ import java.util.List;
     }
 
     @Override
-    public AdminManager read(String userId) {
-        return repository.findById(userId).orElse(null);
+    public AdminManager read(String adminManagerId) {
+        return repository.findById(adminManagerId).orElse(null);
     }
 
     @Override
@@ -39,8 +39,8 @@ import java.util.List;
     }
 
     @Override
-    public boolean delete(String userId) {
-        this.repository.deleteById(userId);
+    public boolean delete(String adminManagerId) {
+        this.repository.deleteById(adminManagerId);
         return true;
     }
 
