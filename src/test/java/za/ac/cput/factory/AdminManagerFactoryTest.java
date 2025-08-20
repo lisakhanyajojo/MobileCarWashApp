@@ -10,11 +10,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AdminManagerFactoryTest {
 
-    private static AdminManager admin1 = AdminManagerFactory.createAdminManager("jay77", null, 9987654321093L, 27698765423L, "Lio@gmail.com", "899out", "sms");
+    private static AdminManager admin1 = AdminManagerFactory.createAdminManager("Alunge3234","jay", null, 9987654321093L, 27698765423L, "Lio@gmail.com", "899out", "sms");
 
-    private static AdminManager admin2 = AdminManagerFactory.createAdminManager("ju77", "Lizz",  889864268753L, 2798643567L, "King@mail.com", "iu888", "email");
+    private static AdminManager admin2 = AdminManagerFactory.createAdminManager("Jojo65456","ju77", "Lizz",  889864268753L, 2798643567L, "King@mail.com", "iu888", "email");
 
-    private static AdminManager admin3 = AdminManagerFactory.createAdminManager("QE3216", "Chris",  987642369965L, 2L, "chiris.gmailcom", "9864out", "sms");
+    private static AdminManager admin3 = AdminManagerFactory.createAdminManager("Ace567","QE3216", "Chris",  987642369965L, 2L, "chiris.gmailcom", "9864out", "sms");
 
     @Test
     public void testCreateAdminFailure_NullFields() {

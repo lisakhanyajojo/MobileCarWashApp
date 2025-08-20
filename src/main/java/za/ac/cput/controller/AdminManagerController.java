@@ -21,14 +21,13 @@ public class AdminManagerController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<AdminManager> create(@RequestBody AdminManager admin) {
-        AdminManager saved = service.save(admin);
-        return ResponseEntity.ok(saved);
+    public AdminManager create(@RequestBody AdminManager admin) {
+        return service.create(admin);
     }
 
     @GetMapping("/read/{adminManagerId}")
-    public AdminManager read(@PathVariable String userId) {
-        return service.read(userId);
+    public AdminManager read(@PathVariable String   adminManagerId) {
+        return service.read(adminManagerId);
     }
 
     @PutMapping("/update")
@@ -37,8 +36,8 @@ public class AdminManagerController {
     }
 
     @DeleteMapping("/delete/{adminManagerId}")
-    public boolean delete(@PathVariable String userId) {
-        return service.delete(userId);
+    public boolean delete(@PathVariable String adminManagerId) {
+        return service.delete(adminManagerId);
     }
 
     @GetMapping("/findAll")
