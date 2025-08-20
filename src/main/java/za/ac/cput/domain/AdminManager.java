@@ -1,18 +1,30 @@
 package za.ac.cput.domain;
 
-public class AdminManager extends User {
+import jakarta.persistence.*;
 
-    private String adminManagerId;
+import java.io.Serializable;
+import java.util.UUID;
+
+@Entity
+
+@DiscriminatorValue("ADMIN_MANAGER")
+public class AdminManager extends User implements Serializable {
+
+
+    @Column(name = "admin_manager_id", unique = true, updatable = false)
+  private String adminManagerId;
+
 
     protected AdminManager(){
         super();
     }
 
-    public String getAdminManagerId() {
+   public String getAdminManagerId() {
         return adminManagerId;
-    }
+   }
 
     public AdminManager (Builder builder){
+        this.userId = builder.userId;
         this.adminManagerId = builder.adminManagerId;
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
@@ -49,9 +61,12 @@ public class AdminManager extends User {
 
            public Builder setAdminManagerId(String adminManagerId) {
                this.adminManagerId = adminManagerId;
+              return this;
+          }
+           public Builder setUserId(String userId) {
+               this.userId = userId;
                return this;
            }
-
            public Builder setFirstName(String firstName) {
                this.firstName = firstName;
                return this;
@@ -88,19 +103,24 @@ public class AdminManager extends User {
                return this;
            }
 
-           public AdminManager.Builder copy(User user) {
-               this.adminManagerId = adminManagerId;
-               this.firstName = user.firstName;
-               this.lastName = user.lastName;
-               this.identificationNumber = user.identificationNumber;
-               this.cellPhone = user.cellPhone;
-               this.email = user.email;
-               this.password = user.password;
-               this.notificationPreference = user.notificationPreference;
+           public AdminManager.Builder copy(AdminManager adminManager) {
+               this.adminManagerId = adminManager.getAdminManagerId();
+               this.userId = adminManager.getUserId();
+               this.firstName = adminManager.getFirstName();
+               this.lastName = adminManager.getLastName();
+               this.identificationNumber = adminManager.getIdentificationNumber();
+               this.cellPhone = adminManager.getCellPhone();
+               this.email = adminManager.getEmail();
+               this.password = adminManager.getPassword();
+               this.notificationPreference = adminManager.getNotificationPreference();
                return this;
            }
 
            public AdminManager build() {
+               if (this.userId == null) {
+                   this.userId = UUID.randomUUID().toString();
+               }
+
                return new AdminManager(this);
            }
        }
