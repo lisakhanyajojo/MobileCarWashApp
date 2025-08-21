@@ -14,6 +14,8 @@ public class PaymentMethod extends Payment {
 
     }
     public PaymentMethod(Builder builder) {
+        this.paymentMethodType = builder.paymentMethodType;
+        this.paymentMethod = builder.paymentMethodId;
 
     }
     public int getPaymentMethodId() {
