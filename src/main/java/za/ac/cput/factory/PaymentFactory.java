@@ -10,11 +10,10 @@ public class PaymentFactory {
 
     public static Payment createPayment(int paymentId, String bookingId, double price, LocalDateTime paymentDate, String bankName, Long bankAccountNumber, int paymentMethod) {
 
-        if (Helper.isNullOrEmpty(bookingId) || !Helper.isPriceDurationValid(price) || paymentDate == null || Helper.isNullOrEmpty(bankName) || bankAccountNumber == null || paymentMethod <= 0) {
+        if (paymentId <=0||Helper.isNullOrEmpty(bookingId) || !Helper.isPriceDurationValid(price) || paymentDate == null || Helper.isNullOrEmpty(bankName) || bankAccountNumber == null || paymentMethod <= 0) {
             return null;
 
         }
-
         return new Payment.Builder()
                 .setPaymentId(paymentId)
                 .setBookingId(bookingId)
