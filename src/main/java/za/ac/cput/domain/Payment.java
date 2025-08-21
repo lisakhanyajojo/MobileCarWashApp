@@ -4,13 +4,13 @@ import java.time.LocalDateTime;
 
 public class Payment {
 
-    private int paymentId;
-    private String bookingId;
-    private double price;
-    private LocalDateTime paymentDate;
-    private String bankName;
-    private long bankAccountNumber;
-    private int paymentMethod;
+    protected int paymentId;
+    protected String bookingId;
+    protected double price;
+    protected LocalDateTime paymentDate;
+    protected String bankName;
+    protected long bankAccountNumber;
+    protected int paymentMethod;
 
 
     public Payment() {

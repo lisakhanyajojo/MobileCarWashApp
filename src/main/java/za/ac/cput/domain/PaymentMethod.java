@@ -6,7 +6,7 @@ Author: AG Gwangqa (222843608)
 
 Date: 09 May 2025 */
 
-public class PaymentMethod {
+public class PaymentMethod extends Payment {
     private int paymentMethodId;
     private String paymentMethodType;
 
@@ -14,6 +14,8 @@ public class PaymentMethod {
 
     }
     public PaymentMethod(Builder builder) {
+        this.paymentMethodType = builder.paymentMethodType;
+        this.paymentMethod = builder.paymentMethodId;
 
     }
     public int getPaymentMethodId() {
@@ -31,14 +33,23 @@ public class PaymentMethod {
         return "PaymentMethod{" +
                 "paymentMethodId=" + paymentMethodId +
                 ", paymentMethodType='" + paymentMethodType + '\'' +
+                ", paymentId=" + paymentId +
+                ", bookingId='" + bookingId + '\'' +
+                ", price=" + price +
+                ", paymentDate=" + paymentDate +
+                ", bankName='" + bankName + '\'' +
+                ", bankAccountNumber=" + bankAccountNumber +
+                ", paymentMethod=" + paymentMethod +
                 '}';
     }
+
     public static class Builder {
         private int paymentMethodId;
         private String paymentMethodType;
 
         public Builder setPaymentMethodId(int paymentMethodId) {
             this.paymentMethodId = paymentMethodId;
+
             return this;
         }
         public Builder setPaymentMethodType(String paymentMethodType) {
