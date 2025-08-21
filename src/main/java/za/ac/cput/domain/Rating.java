@@ -18,22 +18,27 @@ public class Rating {
 
 
     public String getRatingId() {
+
         return ratingId;
     }
 
     public String getBookingId() {
+
         return bookingId;
     }
 
     public String getCustomerId() {
+
         return customerId;
     }
 
     public String getWasherId() {
+
         return washerId;
     }
 
     public int getRatingValue() {
+
         return ratingValue;
     }
 

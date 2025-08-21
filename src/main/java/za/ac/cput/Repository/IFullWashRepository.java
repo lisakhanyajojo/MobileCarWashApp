@@ -4,7 +4,7 @@ import za.ac.cput.domain.FullWash;
 
 import java.util.List;
 
-public interface IFullWashRepository extends IRepository <FullWash , String>{
+public interface IFullWashRepository extends za.ac.cput.repository.IRepository<FullWash , String> {
 
     List<FullWash> getAll();
 }
