@@ -1,10 +1,18 @@
 package za.ac.cput.service;
 
-public interface IService <Type  , id>{
-    Type create (Type t);
+import za.ac.cput.domain.User;
 
-    Type read( id serviceId);
+public interface IService <T , ID>{
 
-    Type update(Type t);
+    T create(T t);
 
-}
+    T save(T t);
+
+    User read(ID id);
+
+    T update(T t);
+
+    boolean delete(ID id);
+
+
+            }
