@@ -42,4 +42,9 @@ class BookingFactoryTest {
         System.out.println("Test Booking Fails with Empty ID: " + booking3);
 
 
-}}
+}
+
+    @Test
+    void createBooking() {
+    }
+}
