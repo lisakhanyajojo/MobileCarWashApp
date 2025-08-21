@@ -4,8 +4,8 @@ import org.junit.Test;
 import za.ac.cput.domain.AdminManager;
 import za.ac.cput.factory.AdminManagerFactory;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class AdminManagerFactoryTest {
 
