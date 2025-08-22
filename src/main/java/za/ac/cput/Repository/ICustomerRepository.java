@@ -1,10 +1,9 @@
 package za.ac.cput.Repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import za.ac.cput.domain.Customer;
 
-import java.util.List;
+@Repository
+public interface ICustomerRepository extends JpaRepository<Customer, String> { }
 
-public interface ICustomerRepository extends IRepository<Customer,Long> {
-
-    List<Customer> getAll();
-}
