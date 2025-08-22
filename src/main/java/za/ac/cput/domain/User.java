@@ -6,9 +6,9 @@ import java.util.UUID;
 
 
 @Entity
-@Table(name = "user")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "user_type", discriminatorType = DiscriminatorType.STRING)
+@Table(name = "users") // Only the root class defines the table
+@DiscriminatorColumn(name = "user_type")
 public class User {
 
 

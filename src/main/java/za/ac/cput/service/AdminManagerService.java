@@ -23,10 +23,10 @@ import java.util.List;
         return repository.save(admin);
     }
 
-    @Override
-    public AdminManager save(AdminManager admin) {
-        return repository.save(admin);
-    }
+//    @Override
+//    public AdminManager save(AdminManager admin) {
+//        return repository.save(admin);
+//    }
 
     @Override
     public AdminManager read(String adminManagerId) {

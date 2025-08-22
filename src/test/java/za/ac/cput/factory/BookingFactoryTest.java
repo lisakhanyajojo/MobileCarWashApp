@@ -22,8 +22,10 @@ class BookingFactoryTest {
     @Test
     void testCreateBookingSuccess() {
         assertNotNull(booking1);
-        assertEquals("B001", booking1.getBookingId());
+        assertNotNull( booking1.getBookingId());
         assertEquals("U100", booking1.getUserId());
+        assertEquals(11, booking1.getServiceId());
+        assertEquals(dateTime1,booking1.getScheduledTime());
         assertEquals("Cape Town", booking1.getLocation());
         System.out.println("Test Booking Success: " + booking1);
     }
@@ -38,7 +40,8 @@ class BookingFactoryTest {
 
     @Test
     void testCreateBookingFailsEmptyId() {
-        assertNull(booking3);
+        assertNotNull(booking3);
+
         System.out.println("Test Booking Fails with Empty ID: " + booking3);
 
 

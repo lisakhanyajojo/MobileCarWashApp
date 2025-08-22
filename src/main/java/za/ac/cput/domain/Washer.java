@@ -1,93 +1,47 @@
 package za.ac.cput.domain;
 
-import jakarta.persistence.*;
-
-
-/*Washer POJO class
-Author: LJ Jojo (221030921)
-Date: 10 May 2025 */
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
-@Table(name = "washers")
 public class Washer extends User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "washer_id", nullable = false, updatable = false)
-    private String washerId;
+    private String userId;   // String primary key
+    private String name;
+    private String email;
+    private long cellPhone;  // long for numeric phone numbers
 
-    @Column(name = "availability_status", nullable = false)
-    private boolean availabilityStatus;
-
-    @Column(name = "rating", nullable = false)
-    private int rating;
-
-    // === Constructors ===
-    protected Washer() {
-        super(); // Required by JPA
-    }
+    // Default constructor
+    protected Washer() {}
 
     private Washer(Builder builder) {
-        super(); // Call User constructor
-        this.washerId = builder.washerId;
-        this.availabilityStatus = builder.availabilityStatus;
-        this.rating = builder.rating;
+        this.userId = builder.userId;
+        this.name = builder.name;
+        this.email = builder.email;
+        this.cellPhone = builder.cellPhone;
     }
 
-    // === Getters ===
-    public String getWasherId() {
-        return washerId;
-    }
+    // Getters
+    public String getUserId() { return userId; }
+    public String getName() { return name; }
+    public String getEmail() { return email; }
+    public long getCellPhone() { return cellPhone; }
 
-    public boolean isAvailable() {
-        return availabilityStatus;
-    }
-
-    public int getRating() {
-        return rating;
-    }
-
-    @Override
-    public String toString() {
-        return "Washer{" +
-                "washerId='" + washerId + '\'' +
-                ", availabilityStatus=" + availabilityStatus +
-                ", rating=" + rating +
-                ", userId='" + userId + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", cellPhone='" + cellPhone + '\'' +
-                '}';
-    }
-
-    // === Builder ===
+    // Builder class
     public static class Builder {
-        // User attributes
         private String userId;
-        private String firstName;
-        private String lastName;
+        private String name;
         private String email;
-        private String cellPhone;
+        private long cellPhone;
 
-        // Washer attributes
-        private String washerId;
-        private boolean availabilityStatus = true;
-        private int rating = 0;
-
-        // === User setters ===
         public Builder setUserId(String userId) {
             this.userId = userId;
             return this;
         }
 
-        public Builder setFirstName(String firstName) {
-            this.firstName = firstName;
-            return this;
-        }
-
-        public Builder setLastName(String lastName) {
-            this.lastName = lastName;
+        public Builder setName(String name) {
+            this.name = name;
             return this;
         }
 
@@ -96,36 +50,16 @@ public class Washer extends User {
             return this;
         }
 
-        public Builder setCellPhone(String cellPhone) {
+        public Builder setCellPhone(long cellPhone) {
             this.cellPhone = cellPhone;
-            return this;
-        }
-
-        // === Washer setters ===
-        public Builder setWasherId(String washerId) {
-            this.washerId = washerId;
-            return this;
-        }
-
-        public Builder setAvailabilityStatus(boolean availabilityStatus) {
-            this.availabilityStatus = availabilityStatus;
-            return this;
-        }
-
-        public Builder setRating(int rating) {
-            this.rating = rating;
             return this;
         }
 
         public Builder copy(Washer washer) {
-            this.userId = userId;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.email = email;
-            this.cellPhone = cellPhone;
-            this.washerId = washerId;
-            this.availabilityStatus = availabilityStatus;
-            this.rating = rating;
+            this.userId = washer.userId;
+            this.name = washer.name;
+            this.email = washer.email;
+            this.cellPhone = washer.cellPhone;
             return this;
         }
 

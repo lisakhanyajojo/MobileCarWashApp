@@ -1,7 +1,8 @@
-package za.ac.cput.repository;
+package za.ac.cput.Repository;
 
 import za.ac.cput.domain.FullWash;
 
+@Deprecated
 public interface IRepository  <Type , id> {
     Type create (Type t);
 
