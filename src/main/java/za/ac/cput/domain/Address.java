@@ -1,14 +1,10 @@
 package za.ac.cput.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
-@Entity
+
+@Embeddable
 public class Address {
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
 
     private String streetNumber;
     private String city;
@@ -20,9 +16,12 @@ public class Address {
     public Address(){
 
     }
-    public Address(String number, String mainStreet, String capeTown, String westernCape, String id) {
-        //
-
+    public Address(String streetNumber, String streetName, String city, String postalCode, String suburb) {
+        this.streetNumber = streetNumber;
+        this.streetName = streetName;
+        this.city = city;
+        this.postalCode = postalCode;
+        this.suburb = suburb;
     }
 
     public Address(Builder builder) {
