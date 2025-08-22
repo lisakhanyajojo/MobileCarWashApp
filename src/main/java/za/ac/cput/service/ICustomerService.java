@@ -5,6 +5,7 @@ import za.ac.cput.domain.FullWash;
 
 import java.util.List;
 
-public interface ICustomerService extends IService<Customer, Long> {
+
+public interface ICustomerService extends IService<Customer, String> {
     List<Customer> getAll();
 }
