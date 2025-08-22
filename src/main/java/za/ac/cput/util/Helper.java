@@ -34,9 +34,10 @@ public class Helper {
         return  true;
     }
 
-    // Generate unique Washer ID
+    // Generate unique Washer ID automatically
     public static String generateWasherId() {
         return "W-" + UUID.randomUUID().toString().substring(0, 8);
+
     }
 
     public static boolean isValidBankAccount(long accountNumber) {
