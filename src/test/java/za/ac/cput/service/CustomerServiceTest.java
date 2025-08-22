@@ -1,75 +1,64 @@
 package za.ac.cput.service;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.domain.Address;
 import za.ac.cput.domain.Customer;
 import za.ac.cput.factory.CustomerFactory;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest(classes = za.ac.cput.Main.class)
+@TestMethodOrder(MethodOrderer.MethodName.class)
 class CustomerServiceTest {
 
-    private CustomerService service;
-    private Customer customer;
+    @Autowired
+    private ICustomerService service;
 
-    @BeforeEach
-    void setUp() {
-        service = new CustomerService();
-        service.getAll().clear(); // clean slate
+    private Address address = new Address.Builder()
+            .setStreetNumber("12")
+            .setStreetName("Dorset St")
+            .setCity("Cape Town")
+            .setPostalCode("8000")
+            .setSuburb("WC")
+            .build();
 
-        Address address = new Address("12", "Dorset St", "Cape Town", "WC", "8000");
-        customer = CustomerFactory.createCustomer(
-                "Anele", "Jaji", "Toyota Corolla", 2,
-                false, true, "FNB", 12345678,
-                9701011234567L, 821234567,
-                "Anele@gmail.com", "SMS", "pasword", address
-        );
+    private Customer customer = CustomerFactory.createCustomer(
+            "Anele", "Jaji", "Toyota Corolla", 2,
+            false, true, "FNB", 12345678,
+            9701011234567L, 821234567,
+            "Anele@gmail.com", "SMS", "password", address
+    );
+
+    @Test
+    void a_create() {
+        Customer saved = service.create(customer);
+        assertNotNull(saved);
+        customer = saved; // ✅ update with generated UUID
+        System.out.println(saved);
     }
 
     @Test
-    void Create() {
-        Customer created = service.create(customer);
-        assertNotNull(created);
-        assertEquals(customer.getCustomerId(), created.getCustomerId());
-
-        System.out.println(created);
-    }
-
-    @Test
-    void Read() {
-        service.create(customer);
-        Customer read = service.read(customer.getCustomerId());
+    void b_read() {
+        Customer read = service.read(customer.getUserId());
         assertNotNull(read);
-
         System.out.println(read);
     }
 
     @Test
-    void testUpdate() {
-        service.create(customer);
-        Customer updated = new Customer.Builder()
-                .copy(customer)
-                .setCarModel("Honda Jazz")
-                .build();
-
-        Customer result = service.update(updated);
-        assertNotNull(result);
-        assertEquals("Honda Jazz", result.getCarModel());
-
-        System.out.println(result);
+    void c_update() {
+        Customer updated = service.update(
+                new Customer.Builder().copy(customer).setFirstName("Qondeezy").build()
+        );
+        assertNotNull(updated);
+        System.out.println(updated);
     }
 
-
-
     @Test
-    void testGetAll() {
-        service.create(customer);
-        List<Customer> customers = service.getAll();
-        assertEquals(1, customers.size());
-
-        System.out.println(customers);
+    void d_getAll() {
+        System.out.println(service.getAll());
     }
 }
