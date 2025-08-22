@@ -1,28 +1,24 @@
 package za.ac.cput.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
-@Entity
+@Embeddable
 public class Address {
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-
     private String streetNumber;
     private String city;
     private String streetName;
     private String postalCode;
     private String suburb;
 
-
-    public Address(){
-
+    public Address() {
     }
-    public Address(String number, String mainStreet, String capeTown, String westernCape, String id) {
-        //
 
+    public Address(String streetNumber, String streetName, String city, String postalCode, String suburb) {
+        this.streetNumber = streetNumber;
+        this.streetName = streetName;
+        this.city = city;
+        this.postalCode = postalCode;
+        this.suburb = suburb;
     }
 
     public Address(Builder builder) {
@@ -31,7 +27,6 @@ public class Address {
         this.streetName = builder.streetName;
         this.postalCode = builder.postalCode;
         this.suburb = builder.suburb;
-
     }
 
     public String getStreetNumber() {
@@ -56,14 +51,9 @@ public class Address {
 
     @Override
     public String toString() {
-        return "Address{" +
-                "streetNumber='" + streetNumber + '\'' +
-                ", city='" + city + '\'' +
-                ", streetName='" + streetName + '\'' +
-                ", postalCode='" + postalCode + '\'' +
-                ", suburb='" + suburb + '\'' +
-                '}';
+        return "Address{" + "streetNumber='" + streetNumber + '\'' + ", city='" + city + '\'' + ", streetName='" + streetName + '\'' + ", postalCode='" + postalCode + '\'' + ", suburb='" + suburb + '\'' + '}';
     }
+
     public static class Builder {
         private String streetNumber;
         private String city;
@@ -75,18 +65,22 @@ public class Address {
             this.streetNumber = streetNumber;
             return this;
         }
+
         public Builder setCity(String city) {
             this.city = city;
             return this;
         }
+
         public Builder setStreetName(String streetName) {
             this.streetName = streetName;
             return this;
         }
+
         public Builder setPostalCode(String postalCode) {
             this.postalCode = postalCode;
             return this;
         }
+
         public Builder setSuburb(String suburb) {
             this.suburb = suburb;
             return this;
