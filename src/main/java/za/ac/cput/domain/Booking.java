@@ -9,7 +9,7 @@ Date: 09 May 2025 */
 
 import java.time.LocalDateTime;
 
-public class Booking {
+public class   Booking {
 
     private String bookingId;
     private String userId;

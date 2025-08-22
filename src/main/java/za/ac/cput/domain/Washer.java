@@ -8,7 +8,6 @@ Author: LJ Jojo (221030921)
 Date: 10 May 2025 */
 
 @Entity
-@Table(name = "washers")
 public class Washer extends User {
 
     @Id
@@ -24,7 +23,7 @@ public class Washer extends User {
 
     // === Constructors ===
     protected Washer() {
-        super(); // Required by JPA
+
     }
 
     private Washer(Builder builder) {
@@ -53,7 +52,7 @@ public class Washer extends User {
                 "washerId='" + washerId + '\'' +
                 ", availabilityStatus=" + availabilityStatus +
                 ", rating=" + rating +
-                ", userId='" + userId + '\'' +
+                //", userId='" + userId + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
@@ -64,7 +63,7 @@ public class Washer extends User {
     // === Builder ===
     public static class Builder {
         // User attributes
-        private String userId;
+        //private String userId;
         private String firstName;
         private String lastName;
         private String email;
@@ -76,10 +75,10 @@ public class Washer extends User {
         private int rating = 0;
 
         // === User setters ===
-        public Builder setUserId(String userId) {
-            this.userId = userId;
-            return this;
-        }
+//        public Builder setUserId(String userId) {
+//            this.userId = userId;
+//            return this;
+//        }
 
         public Builder setFirstName(String firstName) {
             this.firstName = firstName;
@@ -118,12 +117,12 @@ public class Washer extends User {
         }
 
         public Builder copy(Washer washer) {
-            this.userId = userId;
+//            this.userId = userId;
+            this.washerId = washerId;
             this.firstName = firstName;
             this.lastName = lastName;
             this.email = email;
             this.cellPhone = cellPhone;
-            this.washerId = washerId;
             this.availabilityStatus = availabilityStatus;
             this.rating = rating;
             return this;
