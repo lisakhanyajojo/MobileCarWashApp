@@ -53,11 +53,11 @@ public class Washer extends User {
                 "washerId='" + washerId + '\'' +
                 ", availabilityStatus=" + availabilityStatus +
                 ", rating=" + rating +
-                ", userId='" + getUserId() + '\'' +
-                ", firstName='" + getFirstName() + '\'' +
-                ", lastName='" + getLastName() + '\'' +
-                ", email='" + getEmail() + '\'' +
-                ", phoneNumber='" + getCellPhone() + '\'' +
+                ", userId='" + userId + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", cellPhone='" + cellPhone + '\'' +
                 '}';
     }
 
@@ -96,8 +96,8 @@ public class Washer extends User {
             return this;
         }
 
-        public Builder setPhoneNumber(String phoneNumber) {
-            this.cellPhone = phoneNumber;
+        public Builder setCellPhone(String cellPhone) {
+            this.cellPhone = cellPhone;
             return this;
         }
 
@@ -118,14 +118,14 @@ public class Washer extends User {
         }
 
         public Builder copy(Washer washer) {
-            this.userId = washer.getUserId();
-            this.firstName = washer.getFirstName();
-            this.lastName = washer.getLastName();
-            this.email = washer.getEmail();
-            this.cellPhone = String.valueOf(washer.getCellPhone());
-            this.washerId = washer.washerId;
-            this.availabilityStatus = washer.availabilityStatus;
-            this.rating = washer.rating;
+            this.userId = userId;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.email = email;
+            this.cellPhone = cellPhone;
+            this.washerId = washerId;
+            this.availabilityStatus = availabilityStatus;
+            this.rating = rating;
             return this;
         }
 
