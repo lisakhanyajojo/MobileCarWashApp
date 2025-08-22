@@ -25,7 +25,7 @@ public class CustomerFactory {
 
         
         return new Customer.Builder()
-                .setRatingId((System.currentTimeMillis()))
+                .setRatingId(String.valueOf(System.currentTimeMillis()))
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setCarModel(carModel)
@@ -40,7 +40,6 @@ public class CustomerFactory {
                 .setNotificationPreference(notificationPreference)
                 .setPassword(password)
                 .setAddress(address)
-                .setCustomerId(System.currentTimeMillis())
                 .build();
     }
 }
