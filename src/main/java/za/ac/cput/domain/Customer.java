@@ -2,29 +2,27 @@ package za.ac.cput.domain;
 
 import jakarta.persistence.*;
 
-@Entity
-public class Customer extends User{
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
+import java.util.Objects;
 
-    private Long customerId;
+@Entity
+
+public class Customer extends User {
+
     private String carModel;
     private int carWashCount;
     private boolean freeWashActivated;
     private boolean freeBirthdayWash;
     private String bankName;
     private long bankAccountNumber;
-    private Long ratingId;
+    private String ratingId;
 
-    @ManyToOne
-    @JoinColumn(name = "address_street_number")
+    @Embedded
     private Address address;
 
     public Customer() {
-
     }
 
-    private Customer(Builder builder){
+    private Customer(Builder builder) {
         this.ratingId = builder.ratingId;
         this.address = builder.address;
         this.carModel = builder.carModel;
@@ -36,75 +34,51 @@ public class Customer extends User{
         this.cellPhone = builder.cellPhone;
         this.email = builder.email;
         this.password = builder.password;
-        this.customerId = builder.customerId;
         this.notificationPreference = builder.notificationPreference;
-        this.lastName = builder.lastName;
         this.firstName = builder.firstName;
+        this.lastName = builder.lastName;
         this.identificationNumber = builder.identificationNumber;
+        this.userId = builder.userId; }
 
+    public String getCarModel() { return carModel; }
 
-    }
+    public int getCarWashCount() { return carWashCount; }
 
-    public String getCarModel() {
-        return carModel;
-    }
+    public boolean isFreeWashActivated() { return freeWashActivated; }
 
-    public Long getCustomerId() {
-        return customerId;
-    }
+    public boolean isFreeBirthdayWash() { return freeBirthdayWash; }
 
-    public int getCarWashCount() {
-        return carWashCount;
-    }
+    public String getBankName() { return bankName; }
 
-    public boolean isFreeWashActivated() {
-        return freeWashActivated;
-    }
+    public long getBankAccountNumber() { return bankAccountNumber; }
 
-    public boolean isFreeBirthdayWash() {
-        return freeBirthdayWash;
-    }
+    public String getRatingId() { return ratingId; }
 
-    public String getBankName() {
-        return bankName;
-    }
+    public Address getAddress() { return address; }
 
-    public long getBankAccountNumber() {
-        return bankAccountNumber;
-    }
-
-    public Long getRatingId() {
-        return ratingId;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "customerId='" + customerId + '\'' +
-                ", carModel='" + carModel + '\'' +
-                ", carWashCount=" + carWashCount +
-                ", freeWashActivated=" + freeWashActivated +
-                ", freewBirthdayWash=" + freeBirthdayWash +
-                ", bankName='" + bankName + '\'' +
-                ", bankAccountNumber=" + bankAccountNumber +
-                ", ratingId='" + ratingId + '\'' +
+    @Override public String toString() {
+        return "Customer{" + "userId='" + userId + '\'' +
                 ", firstName='" + firstName + '\'' +
-                ", identificationNumber=" + identificationNumber +
                 ", lastName='" + lastName + '\'' +
+                ", identificationNumber=" + identificationNumber +
                 ", cellPhone=" + cellPhone +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", notificationPreference='" + notificationPreference + '\'' +
-                ", address=" + address + '\'' +
-                '}';
-    }
+                ", carModel='" + carModel + '\'' +
+                ", carWashCount=" + carWashCount +
+                ", freeWashActivated=" + freeWashActivated +
+                ", freeBirthdayWash=" + freeBirthdayWash +
+                ", bankName='" + bankName + '\'' +
+                ", bankAccountNumber=" + bankAccountNumber +
+                ", ratingId=" + ratingId +
+                ", address=" + address + '}'; }
 
-    public static class Builder{
-        private Long ratingId;
+
+    public static class Builder {
+
+        private String userId;
+        private String ratingId;
         private String firstName;
         private String lastName;
         private int carWashCount;
@@ -117,96 +91,46 @@ public class Customer extends User{
         private String email;
         private String notificationPreference;
         private String password;
-        private Long customerId;
         private String carModel;
         private Address address;
 
-        public Builder setRatingId(Long ratingId) {
-            this.ratingId = ratingId;
-            return this;
-        }
+        public Builder setUserId(String userId) { this.userId = userId; return this; }
+
+        public Builder setRatingId(String ratingId) { this.ratingId = ratingId; return this; }
+
+        public Builder setFirstName(String firstName) { this.firstName = firstName; return this; }
+
+        public Builder setLastName(String lastName) { this.lastName = lastName; return this; }
+
+        public Builder setCarWashCount(int carWashCount) { this.carWashCount = carWashCount; return this; }
+
+        public Builder setFreeWashActivated(boolean freeWashActivated) { this.freeWashActivated = freeWashActivated; return this; }
+
+        public Builder setFreeBirthdayWash(boolean freeBirthdayWash) { this.freeBirthdayWash = freeBirthdayWash; return this; }
+
+        public Builder setBankName(String bankName) { this.bankName = bankName; return this; }
+
+        public Builder setBankAccountNumber(long bankAccountNumber) { this.bankAccountNumber = bankAccountNumber; return this; }
+
+        public Builder setIdentificationNumber(long identificationNumber) { this.identificationNumber = identificationNumber; return this; }
+
+        public Builder setCellPhone(long cellPhone) { this.cellPhone = cellPhone; return this; }
+
+        public Builder setEmail(String email) { this.email = email; return this; }
+
+        public Builder setNotificationPreference(String notificationPreference) { this.notificationPreference = notificationPreference; return this; }
+
+        public Builder setPassword(String password) { this.password = password; return this; }
+
+        public Builder setCarModel(String carModel) { this.carModel = carModel; return this; }
+
+        public Builder setAddress(Address address) { this.address = address; return this; }
 
 
-        public Builder setFirstName(String firstName) {
-            this.firstName = firstName;
-            return this;
-        }
+        public Builder copy(Customer customer) {
 
-        public Builder setLastName(String lastName) {
-            this.lastName = lastName;
-            return this;
-        }
-
-        public Builder setCarWashCount(int carWashCount) {
-            this.carWashCount = carWashCount;
-            return this;
-        }
-
-        public Builder setFreeWashActivated(boolean freeWashActivated) {
-            this.freeWashActivated = freeWashActivated;
-            return this;
-        }
-
-        public Builder setFreeBirthdayWash(boolean freeBirthdayWash) {
-            this.freeBirthdayWash = freeBirthdayWash;
-            return this;
-        }
-
-        public Builder setBankName(String bankName) {
-            this.bankName = bankName;
-            return this;
-        }
-
-        public Builder setBankAccountNumber(long bankAccountNumber) {
-            this.bankAccountNumber = bankAccountNumber;
-            return this;
-        }
-
-        public Builder setIdentificationNumber(long identificationNumber) {
-            this.identificationNumber = identificationNumber;
-            return this;
-        }
-
-        public Builder setCellPhone(long cellPhone) {
-            this.cellPhone = cellPhone;
-            return this;
-        }
-
-        public Builder setEmail(String email) {
-            this.email = email;
-            return this;
-        }
-
-        public Builder setNotificationPreference(String notificationPreference) {
-            this.notificationPreference = notificationPreference;
-            return this;
-        }
-
-        public Builder setPassword(String password) {
-            this.password = password;
-            return this;
-        }
-
-        public Builder setCustomerId(Long customerId) {
-            this.customerId = customerId;
-            return this;
-        }
-
-        public Builder setCarModel(String carModel) {
-            this.carModel = carModel;
-            return this;
-        }
-
-        public Builder setAddress(Address address) {
-            this.address = address;
-            return this;
-        }
-
-        public Builder copy(Customer customer){
+            this.userId = customer.userId;
             this.ratingId = customer.ratingId;
-            this.cellPhone = customer.cellPhone;
-            this.email = customer.email;
-            this.identificationNumber = customer.identificationNumber;
             this.firstName = customer.firstName;
             this.lastName = customer.lastName;
             this.carWashCount = customer.carWashCount;
@@ -214,17 +138,15 @@ public class Customer extends User{
             this.freeBirthdayWash = customer.freeBirthdayWash;
             this.bankName = customer.bankName;
             this.bankAccountNumber = customer.bankAccountNumber;
-            this.carModel = customer.carModel;
-            this.customerId = customer.customerId;
-            this.notificationPreference = customer.notificationPreference;
+            this.identificationNumber = customer.identificationNumber;
+            this.cellPhone = customer.cellPhone;
+            this.email = customer.email;
             this.password = customer.password;
-            this.address = customer.address;
-            return this;
+            this.notificationPreference = customer.notificationPreference;
+            this.carModel = customer.carModel;
+            this.address = customer.address; return this; }
 
-        }
 
-        public Customer build(){
-            return new Customer(this);
-        }
+        public Customer build() { return new Customer(this);}
     }
 }
