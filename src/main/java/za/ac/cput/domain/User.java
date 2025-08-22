@@ -14,7 +14,7 @@ public class User {
 
 
     @Id
-   // @GeneratedValue(strategy = GenerationType.UUID)  // ✅ Auto-generate UUID
+   // @GeneratedValue(strategy = GenerationType.UUID) //  Auto-generate UUID
    // @Column(nullable = false, updatable = false)
 
     @Column(name = "user_id", nullable = false, updatable = false)

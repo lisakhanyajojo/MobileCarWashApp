@@ -19,10 +19,12 @@ public class PaymentMethod extends Payment {
 
     }
     public int getPaymentMethodId() {
+
         return paymentMethodId;
     }
 
     public String getPaymentMethodType() {
+
         return paymentMethodType;
     }
 
@@ -54,11 +56,13 @@ public class PaymentMethod extends Payment {
             this.paymentMethodType = paymentMethodType;
             return this;
         }
+
         public Builder copy(PaymentMethod paymentMethod) {
             this.paymentMethodId = paymentMethod.paymentMethodId;
             this.paymentMethodType = paymentMethod.paymentMethodType;
             return this;
         }
+
         public PaymentMethod build() {
             return new PaymentMethod(this);
         }
